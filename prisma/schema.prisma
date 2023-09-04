@@ -14,6 +14,7 @@ model usuarios {
   nombre_usuario     String        @db.VarChar(30)
   correo_electronico String        @id @db.VarChar(45)
   estado             Int           @db.TinyInt
+  rol                String        @db.VarChar(1)
   credenciales       credenciales?
 }
 
