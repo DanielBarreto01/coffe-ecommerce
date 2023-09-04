@@ -10,6 +10,9 @@ app.use(bodyParser.json())
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
+const workUsuarios= require('./routers/routerUsuarios');
+app.use('/users',workUsuarios);
+
 //config
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, 'public')));

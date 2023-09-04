@@ -18,8 +18,8 @@ const getUsers = async (req, res) => {
 const postCreateUser = async (req, res) => {
   try {
 
-    const { nombre_usuario, correo_electronico, estado, credenciales } = req.body;
-    if (!nombre_usuario || !correo_electronico || !estado || !credenciales) {
+    const { nombre_usuario, correo_electronico, rol, credenciales } = req.body;
+    if (!nombre_usuario || !correo_electronico || !rol || !credenciales) {
       res.status(400).send('Los parámetros requeridos no están presentes');
       return;
     }
@@ -40,7 +40,7 @@ const postCreateUser = async (req, res) => {
       data: {
         nombre_usuario,
         correo_electronico,
-        estado,
+        rol,
       },
     })
     const saltRounds = 10;
@@ -64,7 +64,7 @@ const postCreateUser = async (req, res) => {
       res.status(201).json({
         message: 'Usuario creado correctamente',
         body: {
-          user: { nombre_usuario, correo_electronico, estado, credenciales: creden.contrasena },
+          user: { nombre_usuario, correo_electronico, rol, credenciales: creden.contrasena },
         },
       });
       console.log(hash);
@@ -113,9 +113,9 @@ const postLogin = async (req, res) => {
     // Devolver una respuesta JSON con el usuario creado
     user.token
     res.status(201).json({
-      message: 'Usuario creado correctamente',
+      message: 'Inicio de sesión correcto',
       body: {
-        user: { user ,token},
+        user: { usuario ,token},
       },
     });
   } catch (error) {
